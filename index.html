@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy 17th Birthday 🎂💗</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    font-family:"Segoe UI",Arial,sans-serif;
+    background:
+        radial-gradient(circle at 10% 20%,rgba(255,255,255,.8),transparent 20%),
+        radial-gradient(circle at 90% 30%,rgba(255,180,215,.5),transparent 25%),
+        linear-gradient(135deg,#ffd9e9,#ffeaf3,#f8b9d5);
+    color:#71304d;
+    overflow-x:hidden;
+}
+
+/* ================= LOCK SCREEN ================= */
+
+#lockScreen{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.lockBox{
+    width:100%;
+    max-width:390px;
+    padding:35px 25px;
+    text-align:center;
+    background:rgba(255,255,255,.78);
+    border:2px solid rgba(255,255,255,.9);
+    border-radius:35px;
+    box-shadow:0 20px 60px rgba(170,60,110,.22);
+    backdrop-filter:blur(15px);
+}
+
+.lockEmoji{
+    font-size:65px;
+    animation:bounce 1.8s infinite;
+}
+
+@keyframes bounce{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-10px)}
+}
+
+.lockBox h1{
+    margin:12px 0 8px;
+    color:#d62e73;
+    font-size:28px;
+}
+
+.lockBox p{
+    font-size:15px;
+    line-height:1.6;
+    margin-bottom:18px;
+}
+
+#pin{
+    width:180px;
+    padding:14px;
+    border:2px solid #ef8ab5;
+    border-radius:18px;
+    background:white;
+    outline:none;
+    text-align:center;
+    font-size:24px;
+    letter-spacing:9px;
+    color:#c92769;
+}
+
+#pin:focus{
+    box-shadow:0 0 0 5px rgba(239,138,181,.18);
+}
+
+.unlockBtn{
+    display:block;
+    margin:18px auto 0;
+    border:none;
+    padding:14px 28px;
+    border-radius:30px;
+    background:linear-gradient(135deg,#e83282,#c9246b);
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    box-shadow:0 8px 20px rgba(210,40,110,.3);
+}
+
+#error{
+    display:none;
+    margin-top:13px;
+    color:#d52d63;
+    font-weight:bold;
+}
+
+/* ================= HERO ================= */
+
+#main{
+    display:none;
+}
+
+.birthdayHero{
+    min-height:620px;
+    padding:55px 15px 35px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+}
+
+.specialBadge{
+    padding:10px 24px;
+    border:2px solid #ed8db7;
+    border-radius:30px;
+    background:rgba(255,255,255,.75);
+    font-size:16px;
+    box-shadow:0 7px 25px rgba(200,60,120,.12);
+    margin-bottom:14px;
+}
+
+.bigCake{
+    font-size:78px;
+    animation:cakeFloat 2s ease-in-out infinite;
+}
+
+@keyframes cakeFloat{
+    0%,100%{transform:translateY(0) rotate(-2deg)}
+    50%{transform:translateY(-12px) rotate(2deg)}
+}
+
+.birthdayTitle{
+    margin-top:12px;
+    font-size:clamp(48px,14vw,88px);
+    line-height:.92;
+    font-weight:900;
+    color:#d52670;
+    text-shadow:
+        3px 4px 0 rgba(255,255,255,.9),
+        0 8px 25px rgba(190,35,100,.2);
+    animation:titleAppear 1.2s ease;
+}
+
+@keyframes titleAppear{
+    from{
+        opacity:0;
+        transform:scale(.65);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+.birthdaySubtitle{
+    margin-top:18px;
+    font-size:23px;
+    color:#74304f;
+}
+
+.heroHearts{
+    margin-top:18px;
+    font-size:27px;
+    animation:heartFloat 3s ease-in-out infinite;
+}
+
+@keyframes heartFloat{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-9px)}
+}
+
+/* ================= MESSAGE CARDS ================= */
+
+.content{
+    padding:0 15px 50px;
+}
+
+.card{
+    max-width:880px;
+    margin:25px auto;
+    padding:30px 25px;
+    background:rgba(255,255,255,.86);
+    border:1px solid rgba(255,255,255,.9);
+    border-radius:32px;
+    box-shadow:0 15px 45px rgba(160,45,95,.16);
+    backdrop-filter:blur(10px);
+    position:relative;
+    z-index:2;
+}
+
+.message{
+    font-size:17px;
+    line-height:2;
+}
+
+.message p{
+    margin-bottom:28px;
+}
+
+.message b{
+    color:#cc3172;
+}
+
+/* ================= SURPRISE ================= */
+
+.surpriseTitle{
+    text-align:center;
+    color:#742e50;
+    font-size:29px;
+    margin-bottom:15px;
+}
+
+.surpriseText{
+    text-align:center;
+    font-size:17px;
+    margin-bottom:22px;
+}
+
+.surpriseBtn{
+    display:block;
+    margin:auto;
+    border:none;
+    padding:15px 35px;
+    border-radius:30px;
+    background:linear-gradient(135deg,#ee3d87,#ca246a);
+    color:white;
+    font-size:17px;
+    font-weight:bold;
+    box-shadow:0 9px 22px rgba(210,40,110,.3);
+}
+
+#secretSurprise{
+    display:none;
+    margin-top:28px;
+    padding:30px 20px;
+    text-align:center;
+    border:2px dashed #eb82b2;
+    border-radius:28px;
+    background:rgba(255,232,243,.7);
+    animation:pop .5s ease;
+}
+
+@keyframes pop{
+    from{
+        opacity:0;
+        transform:scale(.8);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+.surpriseEmoji{
+    font-size:58px;
+    margin-bottom:15px;
+}
+
+.surpriseMessage{
+    color:#ca2d70;
+    font-size:20px;
+    font-weight:bold;
+    line-height:1.7;
+}
+
+.footer{
+    text-align:center;
+    padding:10px 20px 45px;
+    color:#c32d6c;
+    font-size:21px;
+    font-weight:bold;
+}
+
+/* ================= FLOATING EFFECTS ================= */
+
+.heart,
+.sparkle{
+    position:fixed;
+    pointer-events:none;
+    z-index:1;
+}
+
+.heart{
+    bottom:-40px;
+    animation:floatHeart linear forwards;
+    opacity:.75;
+}
+
+@keyframes floatHeart{
+    0%{
+        transform:translateY(0) rotate(0);
+        opacity:0;
+    }
+    15%{
+        opacity:.8;
+    }
+    100%{
+        transform:translateY(-115vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+.sparkle{
+    top:-30px;
+    animation:fallSparkle linear forwards;
+}
+
+@keyframes fallSparkle{
+    to{
+        transform:translateY(110vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+.confetti{
+    position:fixed;
+    top:-40px;
+    z-index:20;
+    pointer-events:none;
+    animation:confettiFall 4s linear forwards;
+}
+
+@keyframes confettiFall{
+    to{
+        transform:translateY(110vh) rotate(720deg);
+        opacity:0;
+    }
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:600px){
+
+    .birthdayHero{
+        min-height:560px;
+    }
+
+    .birthdayTitle{
+        font-size:clamp(45px,14vw,70px);
+    }
+
+    .card{
+        padding:25px 20px;
+        border-radius:28px;
+    }
+
+    .message{
+        font-size:16px;
+        line-height:1.9;
+    }
+
+    .surpriseTitle{
+        font-size:26px;
+    }
+}
+</style>
+</head><title>🎀💌 A Little Birthday Surprise For You ❤️</title>
+
+<meta name="description" content="A little something I made just for you… 🥺❤️ Tap to open your birthday surprise! 🎂🫶🏻">
+
+<meta property="og:title" content="🎀💌 A Little Something I Made Just For You ❤️">
+<meta property="og:description" content="Don't open it in a hurry, okay? 👀 Tap to see your birthday surprise! 🫶🏻🎂">
+<meta property="og:type" content="website">
+
+<body>
+
+<!-- ================= PIN SCREEN ================= -->
+
+<section id="lockScreen">
+
+    <div class="lockBox">
+
+        <div class="lockEmoji">🔐💗</div>
+
+        <h1>Something Special For You 🎀</h1>
+
+        <p>
+            A tiny birthday surprise is waiting inside... 🥺💗<br>
+            Enter the secret PIN to open it 🎂
+        </p>
+
+        <input
+            id="pin"
+            type="password"
+            inputmode="numeric"
+            maxlength="2"
+            autocomplete="off"
+            placeholder="••"
+        >
+
+        <button class="unlockBtn" onclick="unlock()">
+            🔓 Unlock My Surprise
+        </button>
+
+        <div id="error">
+            Wrong PIN 🥺 Try again 💗
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= MAIN WEBSITE ================= -->
+
+<section id="main">
+
+    <!-- HERO HEADING -->
+
+    <section class="birthdayHero">
+
+        <div class="specialBadge">
+            🎂 A very special day 🎂
+        </div>
+
+        <div class="bigCake">
+            🎂
+        </div>
+
+        <h1 class="birthdayTitle">
+            HAPPIEST<br>
+            BIRTHDAYYYYYY ❤️
+        </h1>
+
+        <p class="birthdaySubtitle">
+            Meraaa Betuuuuuu 🥺💗
+        </p>
+
+        <div class="heroHearts">
+            💗　💕　💖　💞　💗
+        </div>
+
+    </section>
+
+
+    <div class="content">
+
+        <!-- MAIN MESSAGE -->
+
+        <div class="card">
+
+            <div class="message">
+
+                <p>
+                    <b>Babyyy</b> sabse phle aapko merii trf se dil se thanks sab chizo ke liye🥹💗
+                    aaj se aapka ek nya saal chalu hua h happy 17th birthday meraaa bacchaaa🤗❤️
+                    Allah se roz Mai dua krungi tumhe har ek choti choti chizo se nawaze jiske aap haqdar ho.
+                    merii jaan m dil se dua krungi tumhe hr vo chiz mile jise tumne hr dua m manga hoga
+                    aur sath sath m bhi mil jau ye bhi dua krungi 🥺❤️
+                </p>
+
+                <p>
+                    Sachhhiii <b>MERIIII PHOOLJHADIIII</b> tum bhot special ho mere liye.
+                    m nhi chahti ki bs m tumhe tumhare birthday pr special feel krau
+                    blki m ye chahti hu m tumhe roz hr ek moment special feel krau🥹💗
+
+                    meraaaa surajmukhi merii baat hamesha dhiyan rakhna ki aap mere liye
+                    bhot zyada important person ho.
+
+                    ghar walo se bhi zyada kbhi ye mt sochna ki tum aese nhi ho jo mujhe chahiye
+                    blki mujhe tumhare alava tumhare jaise koi nhi chahiye.
+                    bs aap chahiye ho merii jaan🥰💕
+                </p>
+
+                <p>
+                    <b>JAAAANNNNNN</b> ek baat aur dhiyan rakhna hamesha 🥺
+                    aapka mere upr pura haq h aur rhega m sirf aapki hu merriii jaan🥺
+
+                    mere ko kbhi bhi kisi aur k liye chod kr mt jana 😣
+                    m promise krti hu Mai hamesha aapke sath rhungi.
+                    m pkka kbhi kahi nhi jaungi.
+
+                    mujhe nhi chahiye koi bhi aapke alawa meraa babu.
+                    mai tumhe pane ke liye is baari kuch bhi krne ko tyar hu.
+
+                    Shyd allah ne aese hi milana likha hai hamare naseeb m
+                    thode dhuko ke sath pr ham kbhi bhi ek dusre ka sath kbhi nhi chodenge.
+                    ek dusre ko smjhenge aur sambhalenge 💕
+
+                    chahe hame sath rehne ke liye kuch bhi Krna pde..🥺
+                </p>
+
+                <p>
+                    <b>BABYYY</b> m jnti hu m tumhare liye perfect nhi hu,
+                    lekin jaisi tumhi chahiye m vaise hi bnne ki koshish krungi.
+
+                    kbhi bhi kisi bhi chiz ko lekr ab hurt nhi krungi.
+                    tumhare liye m hr vo kaam krungi jisse aap khush ho🤗
+
+                    mujhe tumse kbhi bhi kuch bhi nhi chahiye bs ek chiz ke alava
+                    hamesha mere sath rehna kbhi Kahi mt jana.
+
+                    I REALLY LOVEEEE YOUUUUU MERAAA BACCHAAA🥺💗
+                </p>
+
+                <p>
+                    <b>MERRAAA BACCHHAAAA</b> mai dil se sorry bolti hu apni har vo glti ke liye
+                    jo mene ab tk kri hai.
+
+                    mai aesi glti kbhi bhi anjaane m bhi nhi krungi jisse aapko bura lge.
+                    un galtiya ko please maaf kr dena.
+
+                    mai abse hamesha dhiyan rkhungi 😞🥺
+
+                    agr m koi glt decision kbhi lu bhi to rok lena mujhe vo krne se.
+                    mujhe smjha dena ye glt h.
+
+                    aapka mere upr pura haq h mera baccha.
+                    kbhi mt sochna ki nhi h 🥺
+                    hamesha aapka hi rhega ❤️‍🩹🫂
+                </p>
+
+                <p>
+                    Meriii jaaannnnnnnn tum apni life m hamesha khush rehna.
+                    sachh m tumhe dukhi dekhkr bhot bura lgta h.
+
+                    allah tumhe sari khushiyan de bs dukh n de😞
+
+                    tumhara sath m hamesha dungi kbhi akela chod kr nhi jaungi ab kbhi
+                    <b>MERRAAAAAA BACCHHAAA</b> 🥺❤️‍🩹
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- SURPRISE CARD -->
+
+        <div class="card">
+
+            <h2 class="surpriseTitle">
+                🎁 One More Little Surprise 🎁
+            </h2>
+
+            <p class="surpriseText">
+                Birthday boy ke liye ek chhota sa surprise hai... 🥺💗
+            </p>
+
+            <button class="surpriseBtn" onclick="showSurprise()">
+                💗 CLICK HERE 💗
+            </button>
+
+            <div id="secretSurprise">
+
+                <div class="surpriseEmoji">
+                    💖 🫂 🎂 ✨
+                </div>
+
+                <p class="surpriseMessage">
+                    Once again,<br>
+                    HAPPYYYYYYYY BIRTHDAYYYY<br>
+                    MEREEEE WAALEEEE 🥺🫂💗
+                </p>
+
+                <br>
+
+                <p style="font-size:20px;">
+                    I LOVEEEEEEEEEEEE YOUUUUUUUU<br>
+                    MERRRRIIIIII JAAANNNNNNN ❤️🫂🥺
+                </p>
+
+                <br>
+
+                <p style="font-size:15px;line-height:1.8;color:#9b5575;">
+                    May this new year of your life bring you lots of happiness,
+                    peace, smiles and beautiful moments. 🎀
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer">
+        Made with lots and lots of love ❤️🥺
+    </div>
+
+</section>
+
+
+<script>
+
+/* ================= PIN ================= */
+
+function unlock(){
+
+    const pinInput = document.getElementById("pin");
+    const error = document.getElementById("error");
+
+    if(pinInput.value.trim() === "45"){
+
+        error.style.display = "none";
+
+        document.getElementById("lockScreen").style.display = "none";
+        document.getElementById("main").style.display = "block";
+
+        window.scrollTo(0,0);
+
+        createConfetti();
+
+    }else{
+
+        error.style.display = "block";
+
+        pinInput.value = "";
+
+        setTimeout(function(){
+            error.style.display = "none";
+        },2000);
+    }
+}
+
+
+/* ENTER KEY */
+
+document.getElementById("pin").addEventListener("keydown",function(event){
+
+    if(event.key === "Enter"){
+        unlock();
+    }
+
+});
+
+
+/* ================= FLOATING HEARTS ================= */
+
+function createHeart(){
+
+    const heart = document.createElement("div");
+
+    heart.className = "heart";
+
+    const hearts = [
+        "❤️","💗","💕","💖",
+        "💞","🌸","🎀","🥺"
+    ];
+
+    heart.innerHTML =
+        hearts[Math.floor(Math.random()*hearts.length)];
+
+    heart.style.left =
+        Math.random()*100 + "vw";
+
+    heart.style.fontSize =
+        (15 + Math.random()*20) + "px";
+
+    heart.style.animationDuration =
+        (6 + Math.random()*5) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(function(){
+        heart.remove();
+    },11000);
+}
+
+setInterval(createHeart,700);
+
+
+/* ================= SPARKLES ================= */
+
+function createSparkle(){
+
+    const sparkle = document.createElement("div");
+
+    sparkle.className = "sparkle";
+
+    const items = [
+        "✨","⭐","💫","✦","♡"
+    ];
+
+    sparkle.innerHTML =
+        items[Math.floor(Math.random()*items.length)];
+
+    sparkle.style.left =
+        Math.random()*100 + "vw";
+
+    sparkle.style.fontSize =
+        (12 + Math.random()*15) + "px";
+
+    sparkle.style.animationDuration =
+        (4 + Math.random()*4) + "s";
+
+    document.body.appendChild(sparkle);
+
+    setTimeout(function(){
+        sparkle.remove();
+    },8000);
+}
+
+setInterval(createSparkle,900);
+
+
+/* ================= CONFETTI ================= */
+
+function createConfetti(){
+
+    const pieces = [
+        "💗","💕","💖",
+        "✨","🎀","🌸","⭐"
+    ];
+
+    for(let i=0;i<80;i++){
+
+        const piece = document.createElement("div");
+
+        piece.className = "confetti";
+
+        piece.innerHTML =
+            pieces[Math.floor(Math.random()*pieces.length)];
+
+        piece.style.left =
+            Math.random()*100 + "vw";
+
+        piece.style.fontSize =
+            (10 + Math.random()*16) + "px";
+
+        piece.style.animationDelay =
+            Math.random()*2 + "s";
+
+        document.body.appendChild(piece);
+
+        setTimeout(function(){
+            piece.remove();
+        },6500);
+    }
+}
+
+
+/* ================= SURPRISE ================= */
+
+function showSurprise(){
+
+    const surprise =
+        document.getElementById("secretSurprise");
+
+    if(surprise.style.display === "block"){
+
+        surprise.style.display = "none";
+
+    }else{
+
+        surprise.style.display = "block";
+
+        createConfetti();
+
+    }
+}
+
+</script>
+
+</body>
+</html>
